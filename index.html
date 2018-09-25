@@ -1,16 +1,245 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
 	<meta charset="utf-8">
-	<title></title>
+	<link href="https://fonts.googleapis.com/css?family=Karla:400,700" rel="stylesheet">
+	<title>Mark Zuckerberg's Reading List | Good Books, Great Deals</title>
 	<style type="text/css">
+		* {
+			font-family: 'Karla', sans-serif;
+		}
+		.gbgd_page_c {
+			max-width: 1000px;
+			margin: 0px auto;
+		}
+		.gbgd_title_c {
+			margin-bottom: 60px;
+		}
+		.list_block {
+			margin-bottom: 100px;
+			display: block;
+		}
+		.list_left, .list_right {
+			display: inline-block;
+			vertical-align: top;
+		}
+		.list_left {
+			width: 200px;
+			text-align: center;
+			margin-right: 20px;
+		}
+/*		.list_left:hover {
+			cursor: pointer;
+		}*/
+		.list_right {
+			width: calc(100% - 230px);
+		}
 
-	/*css*/
+		.gbgd_title {
+			margin-top: 40px;
+			margin-bottom: 40px;
+		}
+		.gbgd_list_title {
+			font-size: 36px;
+			font-weight: 700;
+			margin-bottom: 10px;
+		}
+		.gbgd_list_description {
+			color: #667;
+			margin-bottom: 10px;
+			font-size: 14px;
+			width: 75%;
+		}
+		.gbgd_list_updatedlast {
+			color: #bbc;
+			font-size: 10px;
+		}
+
+		a.gbgd_buyit {
+			font-size: 28px;
+			font-weight: 700;
+			color: #fff;
+			text-decoration: none;
+			background-color: #44f;
+			width: 150px;
+			padding: 10px 24px;
+			border-radius: 100px;
+			position: relative;
+			top: 10px;
+			box-shadow: 0px 4px 10px 0px rgba(16,16,32,0.25)
+		}
+		a.gbgd_buyit:hover {
+			background-color: #88f;
+		}
+		.gbgd_money {
+			font-weight: 700;
+			font-size: 28px;
+			background-color: #000;
+			color: #fff;
+			padding: 7px;
+			width: 95px;
+			margin: 0 auto;
+			position: relative;
+			top: -30px;
+			border: 4px solid #fff;
+		}
+		.gbgd_binding {
+			color: #bbc;
+			font-size: 10px;
+			position: relative;
+			top: -24px;
+		}
+		.gbgd_image {
+			width: 150px;
+			margin: 0 auto;
+		}
+		
+		.gbgd_booktitle {
+			font-weight: 700;
+			font-size: 48px;
+			letter-spacing: -1.5px;
+			line-height: 1;
+			margin-bottom: 12px;
+			text-decoration: underline;
+		}
+		.gbgd_bookauthor {
+			font-weight: 700;
+			font-size: 24px;
+			margin-bottom: 12px;
+		}
+		.gbgd_vis_c {
+			margin-bottom: 20px;
+		}
+		.gbgd_vis {
+			display: inline-block;
+			text-align: left;
+			margin-right: 12px;
+		}
+		.vis_dot {
+			width: 10px;
+			height: 10px;
+			border-radius: 10px;
+			display: inline-block;
+			margin-left: 4px;
+		}
+		.gbgd_ratings_short {
+			color: #BBC;
+		}
+		.gbgd_book_desc {
+			font-size: 14px;
+			line-height: 1.333;
+			color: #667;
+		}
+
+		.list_block:first-child {
+			border: 5px solid black;
+			padding: 60px 40px;
+			position: relative;
+			width: 100%;
+			left: -45px;
+		}
+		.pick_highlight {
+			margin-bottom: 20px;
+			font-size: 24px;
+			font-weight: 700;
+		}
 
 	</style>
 </head>
 <body>
-<h1>Coming soon...</h1>
-<h2>test</h2>
+
+<div class="gbgd_page_c">
+
+<div class="gbgd_title_c">
+	<div class="gbgd_title">Good Books Great Deals</div>
+	<div class="gbgd_list_title">Mark Zuckerberg's Book Club 📚</div>
+	<div class="gbgd_list_description">In 2015, Mark Zuckerberg hosted an online book club through his personal Facebook account. Zuckerberg made a book recommendation every two weeks to his millions of Facebook followers. The below list includes all 23 titles, ranked by a combination of price, rating, and number of readers.</div>
+	<div class="gbgd_list_updatedlast">Prices updated September 21, 2018</div>
+</div>
+
+<div class="pick_highlight">⭐ Great Book, Great Deal ⭐</div>
+<div id="list_c" v-cloak>
+	<div class="list_block" v-for="book in books">
+		<div class='list_left'>
+			<a class="gbgd_buyit" v-bind:href="book.url">Get it</a>
+			<img class="gbgd_image" v-bind:src="book.img">			
+			<div class="gbgd_money">{{ book.price_format }}</div>
+			<div class="gbgd_binding">{{ book.binding }}</div>
+			
+		</div>
+		<div class='list_right'>
+			<div class="gbgd_booktitle">{{ book.title_y }}</div>
+			<div class="gbgd_bookauthor">{{ book.author }}</div>
+			<div class="gbgd_vis_c">
+				<div class="gbgd_vis">Score {{ book.k_score_format }}<span class="vis_dot" v-bind:style=indexFmt(book.k_score_format)></div>
+				<div class="gbgd_vis">Price {{ book.price_index_format }}<span class="vis_dot" v-bind:style=indexFmt(book.price_index_format)></div>
+				<div class="gbgd_vis">Rating {{ book.rating_index_format }}<span class="vis_dot" v-bind:style=indexFmt(book.rating_index_format)></div>
+				<div class="gbgd_vis">Readers {{ book.rating_count_index_format }}<span class="vis_dot" v-bind:style=indexFmt(book.rating_count_index_format)></div>
+			</div>
+			<div class="gbgd_ratings_short">{{ book.rating_format }}/5.0 stars, {{ book.ratings_format }} readers</div>
+			<p class="gbgd_book_desc">{{ book.description }}</p>
+			<!-- <div class="gbgd_bookauthor">{{ book.author }}</div> -->
+		</div>
+	</div>
+</div>
+
+</div>
+
 </body>
+
+<script src="https://cdn.jsdelivr.net/npm/vue"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/d3/3.5.5/d3.min.js" charset="utf-8"></script>
+<script>
+
+d3.csv("zuckdata.csv", function(d) {
+
+	d.sort(function(x, y){
+	   return +y.k_score - +x.k_score;
+	   // return +x.price - +y.price;
+	})
+
+	var mFormat = d3.format("$,.2f");
+	d.forEach(function(d){
+		d.price_format = mFormat(d.price/100);
+	});
+	var rFormat = d3.format(".1f");
+	d.forEach(function(d){
+		d.rating_format = rFormat(d.rating);
+	});
+	var cFormat = d3.format(",.2r");
+	d.forEach(function(d){
+		d.ratings_format = cFormat(d.rating_count);
+	});
+	var vFormat = d3.format(".0f");
+	d.forEach(function(d){
+		d.k_score_format = vFormat(d.k_score);
+		d.price_index_format = vFormat(d.price_index);
+		d.rating_index_format = vFormat(d.rating_index);
+		d.rating_count_index_format = vFormat(d.rating_count_index);
+	});
+
+	var indexColor = d3.scale.threshold()
+		.domain([10,20,30,40,50,60,70,80,90])
+		.range(["#67001f","#b2182b","#d6604d","#f4a582","#fddbc7","#d1e5f0","#92c5de","#4393c3","#2166ac","#053061"]);
+
+	var app = new Vue({
+		el: '#list_c',
+		data: {
+			books: d
+		},
+		methods: {
+			indexFmt: function(d) {
+				var bkc = indexColor(d);
+				var tc = '#000';
+				if (d >= 80 || d <= 20) {
+					tc = '#FFF';
+				}
+				return 'background-color: ' + bkc + '; color: ' + tc + ';';
+			}
+		}
+	});
+});
+	
+</script>
+
 </html>
