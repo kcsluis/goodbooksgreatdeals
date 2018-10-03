@@ -313,16 +313,17 @@
 				<div class="gbgd_ratings_short">{{ book.rating_format }}/5.0 stars, {{ book.ratings_format }} readers</div>
 				<div class="gbgd_tag_c">
 					<div class="gbgd_tag">#{{ book.rank }} Pick
-						<span v-if="book.price_i > 66"> - Great price</span>
+<!-- 						<span v-if="book.price_i > 66"> - Great price</span>
 						<span v-if="book.rating_i > 66"> - Great rating</span>
-						<span v-if="book.rating_count_i > 66"> - Popular with readers</span>
+						<span v-if="book.rating_count_i > 66"> - Popular with readers</span> -->
 					</div>
-					<div class="gbgd_tag" v-if="book.rating >= 4.4">Highly-rated</div>
+					<div class="gbgd_tag" v-if="book.rating >= 4.2">Highly-rated</div>
+					<div class="gbgd_tag" v-if="book.rating_count > 10000">Popular with readers</div>
+					<div class="gbgd_tag" v-if="book.price_i > 66">Great price</div>
+					<div class="gbgd_tag caution" v-if="book.rating_count < 100">Few reviews</div>
 					<div class="gbgd_tag caution" v-if="book.rating <= 3.5">Poorly-rated</div>
-					<div class="gbgd_tag" v-if="book.rating_count > 25000">Popular with readers</div>
-					<div class="gbgd_tag caution" v-if="book.rating_count < 1000">Unpopular</div>
 					<div class="gbgd_tag deal" v-if="book.price < 1000">Under $10</div>
-					<div class="gbgd_tag deal" v-if="book.percent_off > 35">{{ book.percent_off }}% off</div>
+					<div class="gbgd_tag deal" v-if="book.percent_off > 20">{{ book.percent_off }}% off</div>
 					<div class="gbgd_tag" v-if="book.page_count > 500">Long read: {{ book.page_count }} pages</div>
 					<div class="gbgd_tag" v-if="book.page_count < 200">Short read: {{ book.page_count }} pages</div>
 				</div>
