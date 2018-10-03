@@ -3,7 +3,7 @@
 <head>
 	<meta charset="utf-8">
 	<link href="https://fonts.googleapis.com/css?family=Karla:400,700" rel="stylesheet">
-	<title>Mark Zuckerberg's Reading List | Good Books, Great Deals</title>
+	<title>Fast Company Design Recommendations | Good Books, Great Deals</title>
 	<style type="text/css">
 		* {
 			font-family: 'Karla', sans-serif;
@@ -35,7 +35,7 @@
 			font-size: 16px;
 			background-color: rgba(0,0,0,0.66);
 			font-weight: 700;
-			padding: 10px;
+			padding: 20px 10px 20px 10px;
 			width: calc(100% - 420px);
 			text-align: center;
 			position: fixed;
@@ -105,6 +105,7 @@
 			font-size: 36px;
 			font-weight: 700;
 			margin-bottom: 10px;
+			width: 75%;
 		}
 		.gbgd_list_description {
 			color: #667;
@@ -154,6 +155,11 @@
 			width: 150px;
 			margin: 0 auto;
 			box-shadow: 0px 6px 24px 4px rgba(0,0,0,0.2);
+		}
+		.gbgd_binding {
+			color: #bbc;
+			font-size: 12px;
+			margin-top: -20px;
 		}
 		
 		.gbgd_booktitle {
@@ -277,9 +283,9 @@
 
 	<div class="gbgd_title_c">
 		<div class="gbgd_top_title">Recommendations</div>
-		<div class="gbgd_list_title">Mark Zuckerberg's Book Club</div>
-		<div class="gbgd_list_description">In 2015, Mark Zuckerberg hosted an online book club through his personal Facebook account. Zuckerberg made a book recommendation every two weeks to his millions of Facebook followers. The below list includes all 23 titles, ranked by a combination of price, rating, and number of readers.</div>
-		<div class="gbgd_list_updatedlast">23 books, prices updated September 21, 2018</div>
+		<div class="gbgd_list_title">Fast Company's Design Recommendations</div>
+		<div class="gbgd_list_description">Fast Company asked some of the world’s top design schools to share their favorite books. Here’s what they recommend for your reading list. The below list includes 27 titles, <b>ranked by a combination of price, rating, and number of readers</b>.</div>
+		<div class="gbgd_list_updatedlast">28 books, prices updated October 1, 2018</div>
 	</div>
 
 	<div class="pick_highlight">Our Favorite Deal</div>
@@ -292,7 +298,7 @@
 					<div class="gbgd_money_sm">Get it for</div>
 					<div>{{ book.price_format }}</div>
 				</div>
-				<!-- <div class="gbgd_binding">{{ book.binding }}</div> -->
+				<div class="gbgd_binding">{{ book.binding }}</div>
 				
 			</a>
 			<div class='list_right'>
@@ -306,6 +312,11 @@
 				</div> -->
 				<div class="gbgd_ratings_short">{{ book.rating_format }}/5.0 stars, {{ book.ratings_format }} readers</div>
 				<div class="gbgd_tag_c">
+					<div class="gbgd_tag">#{{ book.rank }} Pick
+						<span v-if="book.price_i > 66"> - Great price</span>
+						<span v-if="book.rating_i > 66"> - Great rating</span>
+						<span v-if="book.rating_count_i > 66"> - Popular with readers</span>
+					</div>
 					<div class="gbgd_tag" v-if="book.rating >= 4.4">Highly-rated</div>
 					<div class="gbgd_tag caution" v-if="book.rating <= 3.5">Poorly-rated</div>
 					<div class="gbgd_tag" v-if="book.rating_count > 25000">Popular with readers</div>
@@ -335,14 +346,12 @@ function alertUser() {
 	alert("Thanks for clicking around! Unfortunately, this link isn't ready yet. Check back later, won't you?");
 };
 
-d3.csv("zuckdata.csv", function(d) {
+d3.csv("fastco_list.csv", function(d) {
 
 	d.sort(function(x, y){
 	   return +y.new_score - +x.new_score;
 	   // return +x.price - +y.price;
 	})
-
-	console.log(d);
 
 	var mFormat = d3.format("$,.2f");
 	d.forEach(function(d){
@@ -357,11 +366,12 @@ d3.csv("zuckdata.csv", function(d) {
 		d.ratings_format = cFormat(d.rating_count);
 	});
 	var vFormat = d3.format(".0f");
-	d.forEach(function(d){
+	d.forEach(function(d,i){
 		d.k_score_format = vFormat(d.k_score);
 		d.price_index_format = vFormat(d.price_index);
 		d.rating_index_format = vFormat(d.rating_index);
 		d.rating_count_index_format = vFormat(d.rating_count_index);
+		d.rank = i+1;
 	});
 
 	var indexColor = d3.scale.threshold()
