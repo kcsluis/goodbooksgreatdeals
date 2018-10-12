@@ -3,9 +3,10 @@
 <head>
 	<meta charset="utf-8">
 	<link href="https://fonts.googleapis.com/css?family=Karla:400,700|Merriweather:900" rel="stylesheet">
-	<title>Design Books from Fast Company Magazine | Good Books, Great Deals</title>
+	<title>Good Books, Great Deals</title>
 	<link rel="shortcut icon" type="image/png" href="gbgd_favicon.png"/>
 	<link rel="stylesheet" type="text/css" href="gbgd_css.css">
+	<link rel="stylesheet" type="text/css" href="gbgd_css_home.css">
 	<!-- Global site tag (gtag.js) - Google Analytics -->
 	<script async src="https://www.googletagmanager.com/gtag/js?id=UA-127410591-1"></script>
 	<script>
@@ -35,18 +36,25 @@
 
 <div class="gbgd_page_right">
 
-	<a class="gbgd_emaillink" href="http://eepurl.com/dJNxdo" target="_blank">Get our weekly newsletter <img class="gbgd_whticon_sm" src="gbgd_favicon_wht.png"></a>
-
-	<div class="gbgd_title_c">
-		<div class="gbgd_list_title">{{ list.what_pretty }}</div>
-		<div class="gbgd_list_subtitle">recommended by <a class="gbgd_sourcelink" v-bind:href="list.ref_url" target="_blank">{{ list.who_pretty}}</a></div>
-		<div class="gbgd_list_description">{{ list.description }} The below list includes {{ num_books }} titles, <b>ranked by a combination of price, rating, and number of readers</b>.</div>
-		<div class="gbgd_list_updatedlast">{{ num_books }} books, prices updated {{ listDate }}</div>
+	<div class="gbgd_bg_background_img">
+		<div class="gbgd_title_c">
+			<div class="gbgd_majortitle">Good Books, Great Deals</div>
+			<div class="gbgd_mt_sub">Popular books. Trusted recommendations. Great prices.</div>
+			<a class="gbgd_primary_cta" href="http://eepurl.com/dJNxdo" target="_blank">Get new deals and recommendations weekly<img class="gbgd_whticon_email_sm" src="email_icon.png"></a>
+		</div>
 	</div>
 
-	<div class="pick_highlight">Our Favorite Deal</div>
+	<div class="pick_highlight">Our Favorite Lists</div>
+	<div class="gbgd_list_overflowcontainer">
+		<div id="list_oflists" v-cloak>
+			<a v-for="item in manifest" class="list_card" v-bind:href="item.url" target="_blank">{{ item.what_pretty }} from {{ item.who_pretty }}
+			</a>
+		</div>
+	</div>
+
+	<div class="pick_highlight">Our Favorite Book This Week</div>
 	<div>
-		<div class="list_block" v-for="book in books" v-cloak>
+		<div class="list_block" v-for="book in books">
 			<a class='list_left' v-bind:href="book.url" target="_blank" v-on:click="event_book">
 				<img class="gbgd_image" v-bind:src="book.img">			
 				<div class="gbgd_money">
@@ -57,12 +65,8 @@
 			</a>
 			<div class='list_right'>
 				<a class="gbgd_booktitle" v-bind:href="book.url" target="_blank">{{ book.title_y }}</a>
-				<div class="gbgd_bookauthor">
-					{{ book.author }}
-				</div>
-				<div class="gbgd_ratings_short">
-					{{ book.rating_format }}/5.0 stars, {{ book.ratings_format }} readers
-				</div>
+				<div class="gbgd_bookauthor">{{ book.author }}</div>
+				<div class="gbgd_ratings_short">{{ book.rating_format }}/5.0 stars, {{ book.ratings_format }} readers</div>
 				<div class="gbgd_tag_c">
 					<div class="gbgd_tag gbgd_tag1">
 						#{{ book.rank }} Pick
@@ -70,13 +74,13 @@
 					<div class="gbgd_tag" v-if="book.rating >= 4.2">
 						Highly-rated
 					</div>
-					<div class="gbgd_tag" v-if="book.rating_count > list.book_readers_high">
+					<div class="gbgd_tag" v-if="book.rating_count > 10000">
 						Popular with readers
 					</div>
 					<div class="gbgd_tag" v-if="book.price_i > 66">
 						Great price
 					</div>
-					<div class="gbgd_tag caution" v-if="book.rating_count < list.book_readers_low">
+					<div class="gbgd_tag caution" v-if="book.rating_count < 100">
 						Few reviews
 					</div>
 					<div class="gbgd_tag caution" v-if="book.rating <= 3.5">
@@ -86,13 +90,13 @@
 						Under $10
 					</div>
 					<div class="gbgd_tag deal" v-if="book.percent_off > 20">
-						{{ book.percent_off }}% of
+						{{ book.percent_off }}% off
 					</div>
-					<div class="gbgd_tag" v-if="book.page_count > list.book_length_high">
-						Long read: {{ book.page_count }} page
+					<div class="gbgd_tag" v-if="book.page_count > 500">
+						Long read: {{ book.page_count }} pages
 					</div>
-					<div class="gbgd_tag" v-if="book.page_count < list.book_length_low">
-						Short read: {{ book.page_count }} page
+					<div class="gbgd_tag" v-if="book.page_count < 200">
+						Short read: {{ book.page_count }} pages
 					</div>
 				</div>
 				<p class="gbgd_book_desc">{{ book.description }}</p>
@@ -100,8 +104,18 @@
 		</div>
 	</div>
 
-	<div class="pick_highlight">Looking for more?</div>
-	<div class="gbgd_endoflist_link">Check out our <a class="gbgd_sourcelink" v-bind:href="similarList.url">recommendations for {{ similarList.what_pretty }}</a> from {{ similarList.who_pretty }}…</div>
+	<div class="gbgd_about">
+		<div class="pick_highlight">About Good Books, Great Deals</div>
+		<p>I love books—real books, physical books, books that you can touch and smell, books that you can share with a friend, books that you can collect and stack on your bookshelf.</p>
+		<p>I also love deals—I get a thrill when I discover a great book on the discount shelf of a local bookstore. Finding those hidden gems is a real delight for me. Maybe it's a delight for you, too. 😄</p>
+		<p>I'm building Good Books, Great Deals to help people feel that delight whenever they want—to help people read more and spend less.</p>
+	</div>
+
+	<div class="gbgd_text">
+		<div class="pick_highlight">Contact Us</div>
+		<a href="https://twitter.com/goodgreatbooks" target="_blank">@goodgreatbooks on Twitter</a>
+		<a href="http://eepurl.com/dJNxdo" target="_blank">Sign up for our twice-a-month newsletter</a>
+	</div>
 
 </div>
 
@@ -115,53 +129,34 @@
 
 <script>
 
-var thisListName = 'design_books_fast_company';
-var listDate = 'October 12, 2018';
-
 queue()
 	.defer(d3.json, "gbgd_manifest.json")
-	.defer(d3.csv, "design_books_fast_company.csv")
+	.defer(d3.csv, "homepage_item.csv")
 	.await(ready);
 
-function ready(error, manifest, d) {
+function ready(error, manifest, homepage_item) {
 
 	manifest.sort(function(x, y){
 	   return +x.order - +y.order;
 	});
-	var thisList = [];
-	var similarListName;
-	var similarList = [];
-	manifest.forEach(function(d){
-		if (d.name == thisListName) {
-			thisList.push(d);
-			similarListName = d.similar_list;
-		};
-	});
-	manifest.forEach(function(d) {
-		if (d.name == similarListName) {
-			similarList.push(d);
-		};
-	});
-
-	d.sort(function(x, y){
+	homepage_item.sort(function(x, y){
 	   return +y.new_score - +x.new_score;
 	});
-	var listLength = d.length;
 
 	var mFormat = d3.format("$,.2f");
-	d.forEach(function(d){
+	homepage_item.forEach(function(d){
 		d.price_format = mFormat(d.price/100);
 	});
 	var rFormat = d3.format(".1f");
-	d.forEach(function(d){
+	homepage_item.forEach(function(d){
 		d.rating_format = rFormat(d.rating);
 	});
 	var cFormat = d3.format(",.2r");
-	d.forEach(function(d){
+	homepage_item.forEach(function(d){
 		d.ratings_format = cFormat(d.rating_count);
 	});
 	var vFormat = d3.format(".0f");
-	d.forEach(function(d,i){
+	homepage_item.forEach(function(d,i){
 		d.k_score_format = vFormat(d.k_score);
 		d.price_index_format = vFormat(d.price_index);
 		d.rating_index_format = vFormat(d.rating_index);
@@ -172,11 +167,7 @@ function ready(error, manifest, d) {
 	var app = new Vue({
 		el: '#list_c',
 		data: {
-			books: d,
-			list: thisList[0],
-			similarList: similarList[0],
-			num_books: listLength,
-			listDate: listDate,
+			books: homepage_item,
 			manifest
 		},
 		methods: {

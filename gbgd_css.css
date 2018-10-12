@@ -9,11 +9,16 @@ body {
 .gbgd_page_left {
 	display: inline-block;
 	position: fixed;
-	width: 180px;
+	width: 160px;
 	height: 100%;
 	background-color: #eee;
 	padding-left: 20px;
+	padding-right: 20px;
 	font-size: 12px;
+	overflow-y: scroll;
+}
+.gbgd_page_left::-webkit-scrollbar { 
+	display: none;
 }
 .gbgd_page_right {
 	display: inline-block;
@@ -34,7 +39,9 @@ body {
 	position: fixed;
 	bottom: 0px;
 	z-index: 1000;
+	text-decoration: none;
 	margin: 0 auto;
+
 }
 .gbgd_emaillink:hover {
 	cursor: pointer;
@@ -50,27 +57,29 @@ body {
 .gbgd_nav_c {
 	margin-bottom: 20px;
 }
+.gbgd_nav_link {
+	text-decoration: none;
+	color: #000;
+}
+.gbgd_nav_link:hover {
+	text-decoration: underline;
+	color: #44f;
+	cursor: pointer;
+}
+.gbgd_nav_link:visited {
+	color: #000;
+}
 .gbgd_nav_header {
-	margin-bottom: 7px;
-	font-weight: 700;
+	margin-bottom: 3px;
 }
 .gbgd_nav_list {
 	margin-bottom: 2px;
-}
-.gbgd_nav_list:hover {
-	text-decoration: underline;
-	cursor: pointer;
-	color: #44f;
+	font-size: 10px;
 }
 
 
-.gbgd_top_title {
-	font-size: 12px;
-	color: #bbc;
-	margin-bottom: 35px;
-}
 .gbgd_title_c {
-	margin-top: 40px;
+	margin-top: 90px;
 	margin-bottom: 60px;
 }
 .list_block {
@@ -98,26 +107,40 @@ body {
 	margin-top: 40px;
 	margin-bottom: 40px;
 	font-weight: 700;
+	text-decoration: none;
+	color: #000;
+	display: block;
+	position: relative;
+}
+.gbgd_title:hover {
+	text-decoration: underline;
+	color: #44f;
+	cursor: pointer;
 }
 .gbgd_list_title {
-	font-size: 42px;
-	font-weight: 700;
-	margin-bottom: 6px;
+	font-size: 72px;
+	font-family: 'Merriweather', serif;
+	font-weight: 900;
 	width: 75%;
-	margin-left: -2px;
+	margin-left: -3px;
+    letter-spacing: -1.5px;
+    line-height: 1.0;
+    margin-bottom: 20px;
 }
 .gbgd_list_subtitle {
 	font-size: 18px;
 	font-weight: 700;
-	margin-bottom: 18px;
+	margin-bottom: 40px;
 	width: 75%;
 }
 .gbgd_sourcelink {
 	text-decoration: none;
+	font-weight: 700;
 	color: #44f;
 }
 .gbgd_sourcelink:hover {
 	text-decoration: underline;
+	cursor: pointer;
 }
 .gbgd_list_description {
 	color: #667;
@@ -175,10 +198,11 @@ a.gbgd_buyit:hover {
 }
 
 .gbgd_booktitle {
-	font-weight: 700;
+	font-weight: 900;
+	font-family: 'Merriweather', serif;
 	font-size: 48px;
 	letter-spacing: -1.5px;
-	line-height: 1;
+	line-height: 1.1;
 	margin-bottom: 20px;
 	text-decoration: underline;
 	color: #000;
@@ -269,6 +293,10 @@ a.gbgd_buyit:hover {
 }
 .gbgd_tag1 {
 	background-color: #bbc;
+}
+
+.gbgd_endoflist_link {
+	margin-bottom: 180px;
 }
 
 [v-cloak] {
