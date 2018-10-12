@@ -86,13 +86,13 @@
 						Under $10
 					</div>
 					<div class="gbgd_tag deal" v-if="book.percent_off > 20">
-						{{ book.percent_off }}% of
+						{{ book.percent_off }}% off
 					</div>
 					<div class="gbgd_tag" v-if="book.page_count > list.book_length_high">
-						Long read: {{ book.page_count }} page
+						Long read: {{ book.page_count }} pages
 					</div>
 					<div class="gbgd_tag" v-if="book.page_count < list.book_length_low">
-						Short read: {{ book.page_count }} page
+						Short read: {{ book.page_count }} pages
 					</div>
 				</div>
 				<p class="gbgd_book_desc">{{ book.description }}</p>
