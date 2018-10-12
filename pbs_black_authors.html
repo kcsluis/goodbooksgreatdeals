@@ -3,7 +3,7 @@
 <head>
 	<meta charset="utf-8">
 	<link href="https://fonts.googleapis.com/css?family=Karla:400,700|Merriweather:900" rel="stylesheet">
-	<title>Best Non-Fiction of 2018 from the New York Times | Good Books, Great Deals</title>
+	<title>Best Black Authors from PBS | Good Books, Great Deals</title>
 	<link rel="shortcut icon" type="image/png" href="gbgd_favicon.png"/>
 	<link rel="stylesheet" type="text/css" href="gbgd_css.css">
 	<!-- Global site tag (gtag.js) - Google Analytics -->
@@ -115,12 +115,12 @@
 
 <script>
 
-var thisListName = 'best_nonfiction_of_2018_new_york_times';
+var thisListName = 'pbs_black_authors';
 var listDate = 'October 12, 2018';
 
 queue()
 	.defer(d3.json, "gbgd_manifest.json")
-	.defer(d3.csv, "best_nonfiction_of_2018_new_york_times.csv")
+	.defer(d3.csv, "pbs_black_authors.csv")
 	.await(ready);
 
 function ready(error, manifest, d) {
