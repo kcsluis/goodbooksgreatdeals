@@ -94,7 +94,7 @@
 		"order": 5,
 		"name": "books_gafa_leaders",
 		"what_pretty": "Business and Fiction Books",
-		"who_pretty": "Larry Page, Jeff Bezos, Mark Zuckerberg, and Steve Jobs",
+		"who_pretty": "Larry Page, Jeff Bezos, Mark Zuckerberg, &amp; Steve Jobs",
 		"url": "https://www.goodbooksgreatdeals.com/books_gafa_leaders.html",
 		"ref_url": "https://gist.github.com/kcsluis/7b43ef2617ec7aebb775df98926ca8a6",
 		"description": "The leaders of GAFA (Google, Amazon, Facebook, and Apple) recommend their favorite business and fiction books. Read on to learn which books Larry Page, Jeff Bezos, Mark Zuckerberg, and Steve Jobs loved.",
