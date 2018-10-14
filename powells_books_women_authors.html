@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<link href="https://fonts.googleapis.com/css?family=Karla:400,700|Merriweather:900" rel="stylesheet">
+	<title>Woman Authors fron Powells Books | Good Books, Great Deals</title>
+	<link rel="shortcut icon" type="image/png" href="gbgd_favicon.png"/>
+	<link rel="stylesheet" type="text/css" href="gbgd_css.css">
+	<!-- Global site tag (gtag.js) - Google Analytics -->
+	<script async src="https://www.googletagmanager.com/gtag/js?id=UA-127410591-1"></script>
+	<script>
+		window.dataLayer = window.dataLayer || [];
+		function gtag(){dataLayer.push(arguments);}
+		gtag('js', new Date());
+		gtag('config', 'UA-127410591-1');
+	</script>
+</head>
+<body>
+
+<div class="gbgd_page_c" id="list_c" v-cloak>
+
+<div class="gbgd_page_left">
+
+	<a class="gbgd_title" href="https://www.goodbooksgreatdeals.com">Good Books, Great Deals</a>
+	<div id="gbgd_nav">
+		<div class="gbgd_nav_c" v-for="item in manifest" v-cloak>
+			<a class="gbgd_nav_link" v-bind:href="item.url" target="_blank">
+				<div class="gbgd_nav_header">{{ item.what_pretty }}</div>
+				<div class="gbgd_nav_list">from {{ item.who_pretty }}</div>
+			</a>
+		</div>
+	</div>
+
+</div>
+
+<div class="gbgd_page_right">
+
+	<a class="gbgd_emaillink" href="http://eepurl.com/dJNxdo" target="_blank">Get our weekly newsletter <img class="gbgd_whticon_sm" src="gbgd_favicon_wht.png"></a>
+
+	<div class="gbgd_title_c">
+		<div class="gbgd_list_title">{{ list.what_pretty }}</div>
+		<div class="gbgd_list_subtitle">recommended by <a class="gbgd_sourcelink" v-bind:href="list.ref_url" target="_blank">{{ list.who_pretty}}</a></div>
+		<div class="gbgd_list_description">{{ list.description }} The below list includes {{ num_books }} titles, <b>ranked by a combination of price, rating, and number of readers</b>.</div>
+		<div class="gbgd_list_updatedlast">{{ num_books }} books, prices updated {{ listDate }}</div>
+	</div>
+
+	<div class="pick_highlight">Our Favorite Deal</div>
+	<div>
+		<div class="list_block" v-for="book in books" v-cloak>
+			<a class='list_left' v-bind:href="book.url" target="_blank" v-on:click="event_book">
+				<img class="gbgd_image" v-bind:src="book.img">			
+				<div class="gbgd_money">
+					<div class="gbgd_money_sm">Get it for</div>
+					<div>{{ book.price_format }}</div>
+				</div>
+				<div class="gbgd_binding">{{ book.binding }}</div>
+			</a>
+			<div class='list_right'>
+				<a class="gbgd_booktitle" v-bind:href="book.url" target="_blank">{{ book.title_y }}</a>
+				<div class="gbgd_bookauthor">
+					{{ book.author }}
+				</div>
+				<div class="gbgd_ratings_short">
+					{{ book.rating_format }}/5.0 stars, {{ book.ratings_format }} readers
+				</div>
+				<div class="gbgd_tag_c">
+					<div class="gbgd_tag gbgd_tag1">
+						#{{ book.rank }} Pick
+					</div>
+					<div class="gbgd_tag" v-if="book.rating >= 4.2">
+						Highly-rated
+					</div>
+					<div class="gbgd_tag" v-if="book.rating_count > list.book_readers_high">
+						Popular with readers
+					</div>
+					<div class="gbgd_tag" v-if="book.price_i > 66">
+						Great price
+					</div>
+					<div class="gbgd_tag caution" v-if="book.rating_count < list.book_readers_low">
+						Few reviews
+					</div>
+					<div class="gbgd_tag caution" v-if="book.rating <= 3.5">
+						Poorly-rated
+					</div>
+					<div class="gbgd_tag deal" v-if="book.price < 1000">
+						Under $10
+					</div>
+					<div class="gbgd_tag deal" v-if="book.percent_off > 20">
+						{{ book.percent_off }}% off
+					</div>
+					<div class="gbgd_tag" v-if="book.page_count > list.book_length_high">
+						Long read: {{ book.page_count }} pages
+					</div>
+					<div class="gbgd_tag" v-if="book.page_count < list.book_length_low">
+						Short read: {{ book.page_count }} pages
+					</div>
+				</div>
+				<p class="gbgd_book_desc">{{ book.description }}</p>
+			</div>
+		</div>
+	</div>
+
+	<div class="pick_highlight">Looking for more?</div>
+	<div class="gbgd_endoflist_link">Check out our <a class="gbgd_sourcelink" v-bind:href="similarList.url">recommendations for {{ similarList.what_pretty }}</a> from {{ similarList.who_pretty }}…</div>
+
+</div>
+
+</div>
+
+</body>
+
+<script src="https://cdn.jsdelivr.net/npm/vue"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/d3/3.5.5/d3.min.js" charset="utf-8"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/queue-async/1.0.7/queue.min.js"></script>
+
+<script>
+
+var thisListName = 'powells_books_women_authors';
+var listDate = 'October 12, 2018';
+
+queue()
+	.defer(d3.json, "gbgd_manifest.json")
+	.defer(d3.csv, "powells_books_women_authors.csv")
+	.await(ready);
+
+function ready(error, manifest, d) {
+
+	manifest.sort(function(x, y){
+	   return +x.order - +y.order;
+	});
+	var thisList = [];
+	var similarListName;
+	var similarList = [];
+	manifest.forEach(function(d){
+		if (d.name == thisListName) {
+			thisList.push(d);
+			similarListName = d.similar_list;
+		};
+	});
+	manifest.forEach(function(d) {
+		if (d.name == similarListName) {
+			similarList.push(d);
+		};
+	});
+
+	d.sort(function(x, y){
+	   return +y.new_score - +x.new_score;
+	});
+	var listLength = d.length;
+
+	var mFormat = d3.format("$,.2f");
+	d.forEach(function(d){
+		d.price_format = mFormat(d.price/100);
+	});
+	var rFormat = d3.format(".1f");
+	d.forEach(function(d){
+		d.rating_format = rFormat(d.rating);
+	});
+	var cFormat = d3.format(",.2r");
+	d.forEach(function(d){
+		d.ratings_format = cFormat(d.rating_count);
+	});
+	var vFormat = d3.format(".0f");
+	d.forEach(function(d,i){
+		d.k_score_format = vFormat(d.k_score);
+		d.price_index_format = vFormat(d.price_index);
+		d.rating_index_format = vFormat(d.rating_index);
+		d.rating_count_index_format = vFormat(d.rating_count_index);
+		d.rank = i+1;
+	});
+
+	var app = new Vue({
+		el: '#list_c',
+		data: {
+			books: d,
+			list: thisList[0],
+			similarList: similarList[0],
+			num_books: listLength,
+			listDate: listDate,
+			manifest
+		},
+		methods: {
+			event_book: function(event) {
+				ga('send', 'event', 'book_link', 'click_to_amazon');
+			}
+		}
+	});
+
+};
+	
+</script>
+
+</html>

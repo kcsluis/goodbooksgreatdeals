@@ -78,7 +78,7 @@
 		"id": "gbgd0006",
 		"order": 3,
 		"name": "powells_books_women_authors",
-		"what_pretty": "Woman Authors",
+		"what_pretty": "Women Authors",
 		"who_pretty": "Powell's Books",
 		"url": "https://www.goodbooksgreatdeals.com/powells_books_women_authors.html",
 		"ref_url": "https://www.powells.com/25-women-to-read-before-you-die",
@@ -86,7 +86,7 @@
 		"book_length_low": 200,
 		"book_length_high": 500,
 		"book_readers_low": 100,
-		"book_readers_high": 10000,
+		"book_readers_high": 50000,
 		"similar_list": "pbs_black_authors"
 	},
 	{
