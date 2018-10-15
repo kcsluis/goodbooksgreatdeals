@@ -1,11 +1,12 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
 	<meta charset="utf-8">
 	<link href="https://fonts.googleapis.com/css?family=Karla:400,700|Merriweather:900" rel="stylesheet">
 	<title>Best Fiction of 2018 from the New York Times | Good Books, Great Deals</title>
 	<link rel="shortcut icon" type="image/png" href="gbgd_favicon.png"/>
 	<link rel="stylesheet" type="text/css" href="gbgd_css.css">
+	<meta name="description" content="Discover every book that's topped the New York Times Fiction Bestseller List in 2018—we'll highlight the most popular, highest-rated books at the best prices.">
 	<!-- Global site tag (gtag.js) - Google Analytics -->
 	<script async src="https://www.googletagmanager.com/gtag/js?id=UA-127410591-1"></script>
 	<script>
@@ -24,7 +25,7 @@
 	<a class="gbgd_title" href="https://www.goodbooksgreatdeals.com">Good Books, Great Deals</a>
 	<div id="gbgd_nav">
 		<div class="gbgd_nav_c" v-for="item in manifest" v-cloak>
-			<a class="gbgd_nav_link" v-bind:href="item.url" target="_blank">
+			<a class="gbgd_nav_link" v-bind:href="item.url">
 				<div class="gbgd_nav_header">{{ item.what_pretty }}</div>
 				<div class="gbgd_nav_list">from {{ item.who_pretty }}</div>
 			</a>

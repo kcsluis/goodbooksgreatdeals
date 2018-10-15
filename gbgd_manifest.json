@@ -11,7 +11,7 @@
 		"book_length_low": 200,
 		"book_length_high": 500,
 		"book_readers_low": 100,
-		"book_readers_high": 10000,
+		"book_readers_high": 5000,
 		"similar_list": "books_gafa_leaders"
 	},
 	{
@@ -25,8 +25,8 @@
 		"description": "The New York Times tracks print and electronic sales for all fiction books. This is a list of every book that's hit the #1 spot in 2018.",
 		"book_length_low": 200,
 		"book_length_high": 500,
-		"book_readers_low": 100,
-		"book_readers_high": 10000,
+		"book_readers_low": 2000,
+		"book_readers_high": 15000,
 		"similar_list": "best_nonfiction_of_2018_new_york_times"
 	},
 	{
@@ -40,8 +40,8 @@
 		"description": "The New York Times tracks print and electronic sales for all non-fiction books. This is a list of every book that's hit the #1 spot in 2018.",
 		"book_length_low": 200,
 		"book_length_high": 500,
-		"book_readers_low": 100,
-		"book_readers_high": 10000,
+		"book_readers_low": 2000,
+		"book_readers_high": 50000,
 		"similar_list": "best_fiction_of_2018_new_york_times"
 	},
 	{
@@ -56,7 +56,7 @@
 		"book_length_low": 20,
 		"book_length_high": 60,
 		"book_readers_low": 100,
-		"book_readers_high": 10000,
+		"book_readers_high": 20000,
 		"similar_list": "pbs_black_authors"
 	},
 	{
@@ -70,8 +70,8 @@
 		"description": "PBS (the Public Broadcasting Service) lists eleven essential African American authors. This is a list of their most popular books.",
 		"book_length_low": 200,
 		"book_length_high": 500,
-		"book_readers_low": 100,
-		"book_readers_high": 10000,
+		"book_readers_low": 1000,
+		"book_readers_high": 25000,
 		"similar_list": "powells_books_women_authors"
 	},
 	{
@@ -85,7 +85,7 @@
 		"description": "Powell's Books of Portland, Oregon—the second most popular bookstore in the US—lists twenty-five essential woman authors. This is a list of their most popular books.",
 		"book_length_low": 200,
 		"book_length_high": 500,
-		"book_readers_low": 100,
+		"book_readers_low": 5000,
 		"book_readers_high": 50000,
 		"similar_list": "pbs_black_authors"
 	},
@@ -101,7 +101,7 @@
 		"book_length_low": 200,
 		"book_length_high": 500,
 		"book_readers_low": 100,
-		"book_readers_high": 10000,
+		"book_readers_high": 50000,
 		"similar_list": "design_books_fast_company"
 	}
 ]
