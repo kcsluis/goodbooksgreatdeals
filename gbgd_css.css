@@ -243,11 +243,8 @@ a.gbgd_buyit:hover {
 	display: -webkit-box;
 	-webkit-line-clamp: 5;
 	-webkit-box-orient: vertical;  
+	max-height: 108px;
 }
-/*		.gbgd_book_desc::after {
-	content: "Read more";
-	color: #44f;
-}*/
 
 .list_block:first-child {
 	/*border: 5px solid black;*/
