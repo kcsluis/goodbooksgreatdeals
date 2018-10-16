@@ -135,7 +135,7 @@ function getCookie(cname) {
     }
     return "";
 }
-var didIsubscribe = getCookie(gbgd_email_subscribe);
+var didIsubscribe = getCookie("gbgd_email_subscribe");
 if (didIsubscribe == "") {
 	document.getElementById("gbgd_emailbutton").setAttribute("style", "display: block;")
 };
