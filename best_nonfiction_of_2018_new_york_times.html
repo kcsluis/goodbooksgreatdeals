@@ -36,7 +36,7 @@
 
 <div class="gbgd_page_right">
 
-	<a class="gbgd_emaillink" id="gbgd_emailbutton" href="http://eepurl.com/dJNxdo" target="_blank">Get our weekly newsletter <img class="gbgd_whticon_sm" src="gbgd_favicon_wht.png"></a>
+	<a class="gbgd_emaillink" id="gbgd_emailbutton" href="http://eepurl.com/dJNxdo" target="_blank" onclick="setEmail()">Get our weekly newsletter <img class="gbgd_whticon_sm" src="gbgd_favicon_wht.png"></a>
 
 	<div class="gbgd_title_c">
 		<div class="gbgd_list_title">{{ list.what_pretty }}</div>
@@ -119,9 +119,31 @@
 var thisListName = 'best_nonfiction_of_2018_new_york_times';
 var listDate = 'October 12, 2018';
 
-var email_subscribe = document.getElementById("gbgd_emailbutton");
-var email_cookie = document.cookie;
-console.log(email_cookie);
+
+function getCookie(cname) {
+    var name = cname + "=";
+    var decodedCookie = decodeURIComponent(document.cookie);
+    var ca = decodedCookie.split(';');
+    for(var i = 0; i <ca.length; i++) {
+        var c = ca[i];
+        while (c.charAt(0) == ' ') {
+            c = c.substring(1);
+        }
+        if (c.indexOf(name) == 0) {
+            return c.substring(name.length, c.length);
+        }
+    }
+    return "";
+}
+var didIsubscribe = getCookie(gbgd_email_subscribe);
+if (didIsubscribe == "") {
+	document.getElementById("gbgd_emailbutton").setAttribute("style", "display: block;")
+};
+
+function setEmail() {
+	document.cookie = "gbgd_email_subscribe=yes; expires=Tue, 10 Aug 2038 00:00:00 UTC; path=/";
+};
+
 
 queue()
 	.defer(d3.json, "gbgd_manifest.json")
