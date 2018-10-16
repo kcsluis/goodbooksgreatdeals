@@ -119,6 +119,32 @@
 var thisListName = 'powells_books_women_authors';
 var listDate = 'October 12, 2018';
 
+
+function getCookie(cname) {
+    var name = cname + "=";
+    var decodedCookie = decodeURIComponent(document.cookie);
+    var ca = decodedCookie.split(';');
+    for(var i = 0; i <ca.length; i++) {
+        var c = ca[i];
+        while (c.charAt(0) == ' ') {
+            c = c.substring(1);
+        }
+        if (c.indexOf(name) == 0) {
+            return c.substring(name.length, c.length);
+        }
+    }
+    return "";
+}
+var didIsubscribe = getCookie("gbgd_email_subscribe");
+if (didIsubscribe == "") {
+	document.getElementById("gbgd_emailbutton").setAttribute("style", "display: block;")
+};
+
+function setEmail() {
+	document.cookie = "gbgd_email_subscribe=yes; expires=Tue, 10 Aug 2038 00:00:00 UTC; path=/";
+};
+
+
 queue()
 	.defer(d3.json, "gbgd_manifest.json")
 	.defer(d3.csv, "powells_books_women_authors.csv")
