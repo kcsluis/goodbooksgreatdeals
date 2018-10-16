@@ -41,6 +41,7 @@ body {
 	z-index: 1000;
 	text-decoration: none;
 	margin: 0 auto;
+	display: none;
 
 }
 .gbgd_emaillink:hover {
