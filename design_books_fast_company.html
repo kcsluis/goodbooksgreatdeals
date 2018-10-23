@@ -25,7 +25,7 @@
 	<a class="gbgd_title" href="https://kcsluis.github.io">Good Books, Great Deals</a>
 	<div id="gbgd_nav">
 		<div class="gbgd_nav_c" v-for="item in manifest" v-cloak>
-			<a class="gbgd_nav_link" v-bind:href="item.url">
+			<a v-bind:href="item.url" v-bind:class="item.name, gbgd_nav_link">
 				<div class="gbgd_nav_header">{{ item.what_pretty }}</div>
 				<div class="gbgd_nav_list">from {{ item.who_pretty }}</div>
 			</a>
@@ -62,7 +62,7 @@
 					{{ book.author }}
 				</div>
 				<div class="gbgd_ratings_short">
-					{{ book.rating_format }}/5.0 stars, {{ book.ratings_format }} readers
+					<span class='gbgd_item_stat'>{{ book.rating_format }}</span>/5.0 stars, <span class='gbgd_item_stat'>{{ book.ratings_format }}</span> readers
 				</div>
 				<div class="gbgd_tag_c">
 					<div class="gbgd_tag gbgd_tag1">
@@ -119,6 +119,8 @@
 var thisListName = 'design_books_fast_company';
 var listDate = 'October 12, 2018';
 
+var d3navSelector = 'div.gbgd_nav_link.' + thisListName;
+d3.selectAll(d3navSelector).attr('style', 'font-weight: bold;');
 
 function getCookie(cname) {
     var name = cname + "=";

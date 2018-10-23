@@ -77,6 +77,7 @@ body {
 .gbgd_nav_list {
 	margin-bottom: 2px;
 	font-size: 10px;
+	color: #99a;
 }
 
 
@@ -236,6 +237,11 @@ a.gbgd_buyit:hover {
 .gbgd_ratings_short {
 	color: #BBC;
 }
+.gbgd_item_stat {
+	color: #000;
+	font-weight: bold;
+}
+
 .gbgd_book_desc {
 	font-size: 14px;
 	line-height: 1.5;
