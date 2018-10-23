@@ -119,8 +119,8 @@
 var thisListName = 'powells_books_women_authors';
 var listDate = 'October 12, 2018';
 
-var d3navSelector = 'div.' + thisListName;
-d3.selectAll(d3navSelector).style('font-weight', 'bold');
+var d3navSelector = 'a.' + thisListName;
+var navHighlight = d3.selectAll(d3navSelector).style('font-weight', 'bold');
 
 function getCookie(cname) {
     var name = cname + "=";
