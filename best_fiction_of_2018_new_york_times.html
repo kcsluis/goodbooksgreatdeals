@@ -120,7 +120,7 @@ var thisListName = 'best_fiction_of_2018_new_york_times';
 var listDate = 'October 12, 2018';
 
 var d3navSelector = 'div.gbgd_nav_link.' + thisListName;
-d3.selectAll(d3navSelector).attr('style', 'font-weight: bold;');
+d3.selectAll(d3navSelector).style('font-weight', 'bold');
 
 function getCookie(cname) {
     var name = cname + "=";

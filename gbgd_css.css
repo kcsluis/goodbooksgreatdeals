@@ -62,6 +62,11 @@ body {
 	text-decoration: none;
 	color: #000;
 }
+.gbgd_nav_list {
+	margin-bottom: 2px;
+	font-size: 10px;
+	color: #99a;
+}
 .gbgd_nav_link:visited {
 	color: #000;
 }
@@ -73,11 +78,6 @@ body {
 
 .gbgd_nav_header {
 	margin-bottom: 3px;
-}
-.gbgd_nav_list {
-	margin-bottom: 2px;
-	font-size: 10px;
-	color: #99a;
 }
 
 
@@ -239,7 +239,6 @@ a.gbgd_buyit:hover {
 }
 .gbgd_item_stat {
 	color: #000;
-	font-weight: bold;
 }
 
 .gbgd_book_desc {
