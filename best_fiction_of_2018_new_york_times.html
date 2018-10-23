@@ -211,7 +211,14 @@ function ready(error, manifest, d) {
 		methods: {
 			event_book: function(event) {
 				ga('send', 'event', 'book_link', 'click_to_amazon');
+			},
+			highlight_nav: function() {
+				var d3navSelector = "a.gbgd_nav_link." + thisListName;
+				var navHighlight = d3.selectAll(d3navSelector).style('font-weight', 'bold');
 			}
+		},
+		mounted() {
+			this.highlight_nav()
 		}
 	});
 
