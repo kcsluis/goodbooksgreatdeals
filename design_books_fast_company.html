@@ -25,7 +25,7 @@
 	<a class="gbgd_title" href="https://kcsluis.github.io">Good Books, Great Deals</a>
 	<div id="gbgd_nav">
 		<div class="gbgd_nav_c" v-for="item in manifest" v-cloak>
-			<a v-bind:href="item.url" v-bind:class="item.name, gbgd_nav_link">
+			<a class="gbgd_nav_link" v-bind:href="item.url" v-bind:class="item.name">
 				<div class="gbgd_nav_header">{{ item.what_pretty }}</div>
 				<div class="gbgd_nav_list">from {{ item.who_pretty }}</div>
 			</a>
