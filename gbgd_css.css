@@ -67,9 +67,6 @@ body {
 	font-size: 10px;
 	color: #99a;
 }
-.gbgd_nav_list:hover {
-	color: #44f;
-}
 .gbgd_nav_link:visited {
 	color: #000;
 }
@@ -77,6 +74,9 @@ body {
 	text-decoration: underline;
 	color: #44f;
 	cursor: pointer;
+}
+.gbgd_nav_link:hover > * {
+	color: #44f;
 }
 
 .gbgd_nav_header {
