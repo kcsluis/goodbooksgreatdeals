@@ -1,0 +1,6 @@
+bottlenose
+bs4
+requests
+pandas
+numpy
+lxml

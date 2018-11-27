@@ -57,7 +57,7 @@
 				<div class="gbgd_binding">{{ book.binding }}</div>
 			</a>
 			<div class='list_right'>
-				<a class="gbgd_booktitle" v-bind:href="book.url" target="_blank">{{ book.title_y }}</a>
+				<a class="gbgd_booktitle" v-bind:href="book.url" target="_blank">{{ book.title }}</a>
 				<div class="gbgd_bookauthor">
 					{{ book.author }}
 				</div>
@@ -117,7 +117,7 @@
 <script>
 
 var thisListName = 'powells_books_women_authors';
-var listDate = 'October 12, 2018';
+var listDate = 'today';
 
 var d3navSelector = 'a.' + thisListName;
 var navHighlight = d3.selectAll(d3navSelector).style('font-weight', 'bold');
@@ -149,7 +149,7 @@ function setEmail() {
 
 queue()
 	.defer(d3.json, "gbgd_manifest.json")
-	.defer(d3.csv, "output/powells_books_women_authors.csv")
+	.defer(d3.tsv, "output/powells_womenauthors.tsv")
 	.await(ready);
 
 function ready(error, manifest, d) {
