@@ -8,7 +8,7 @@ class AmazonParser:
 	def lookupISBN(self, isbn, title):
 		thisbook = {}
 		thisbook['isbn'] = isbn
-		thisbook['title_x'] = title
+		thisbook['title'] = title
 
 		response = self.amazon.ItemLookup(
 			ItemId=isbn,
