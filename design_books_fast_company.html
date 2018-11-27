@@ -57,7 +57,7 @@
 				<div class="gbgd_binding">{{ book.binding }}</div>
 			</a>
 			<div class='list_right'>
-				<a class="gbgd_booktitle" v-bind:href="book.url" target="_blank">{{ book.title_y }}</a>
+				<a class="gbgd_booktitle" v-bind:href="book.url" target="_blank">{{ book.title }}</a>
 				<div class="gbgd_bookauthor">
 					{{ book.author }}
 				</div>
@@ -149,7 +149,7 @@ function setEmail() {
 
 queue()
 	.defer(d3.json, "gbgd_manifest.json")
-	.defer(d3.csv, "output/design_books_fast_company.csv")
+	.defer(d3.tsv, "output/design_fast_company.tsv")
 	.await(ready);
 
 function ready(error, manifest, d) {
