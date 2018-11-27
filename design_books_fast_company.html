@@ -149,7 +149,7 @@ function setEmail() {
 
 queue()
 	.defer(d3.json, "gbgd_manifest.json")
-	.defer(d3.csv, "design_books_fast_company.csv")
+	.defer(d3.csv, "output/design_books_fast_company.csv")
 	.await(ready);
 
 function ready(error, manifest, d) {

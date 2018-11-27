@@ -149,7 +149,7 @@ function setEmail() {
 
 queue()
 	.defer(d3.json, "gbgd_manifest.json")
-	.defer(d3.csv, "best_fiction_of_2018_new_york_times.csv")
+	.defer(d3.csv, "output/best_fiction_of_2018_new_york_times.csv")
 	.await(ready);
 
 function ready(error, manifest, d) {

@@ -149,7 +149,7 @@ function setEmail() {
 
 queue()
 	.defer(d3.json, "gbgd_manifest.json")
-	.defer(d3.csv, "pbs_black_authors.csv")
+	.defer(d3.csv, "output/pbs_black_authors.csv")
 	.await(ready);
 
 function ready(error, manifest, d) {

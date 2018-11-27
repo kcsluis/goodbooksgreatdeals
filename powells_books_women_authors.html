@@ -149,7 +149,7 @@ function setEmail() {
 
 queue()
 	.defer(d3.json, "gbgd_manifest.json")
-	.defer(d3.csv, "powells_books_women_authors.csv")
+	.defer(d3.csv, "output/powells_books_women_authors.csv")
 	.await(ready);
 
 function ready(error, manifest, d) {
