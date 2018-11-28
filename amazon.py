@@ -67,7 +67,7 @@ class GoodreadsParser:
 		if response.status_code == 200:
 			result = response.json()
 			thisbook['rating'] = result['books'][0]['average_rating']
-			thisbook['rating_count'] = result['books'][0]['work_ratings_count']
+			thisbook['rating_count'] = int(round(result['books'][0]['work_ratings_count'], -1))
 		
 		return thisbook
 
