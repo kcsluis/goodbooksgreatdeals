@@ -2,7 +2,6 @@ import os
 import bottlenose
 from bs4 import BeautifulSoup
 import requests
-import re
 
 class AmazonParser:
 
