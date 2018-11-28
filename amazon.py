@@ -42,7 +42,7 @@ class AmazonParser:
 				thisbook['img'] = best_response.LargeImage.URL.string
 		if hasattr(best_response.EditorialReviews, 'Content'):
 			if hasattr(best_response.EditorialReviews.Content, 'string'):
-				thisbook['description'] = best_response.EditorialReviews.Content.string
+				thisbook['description'] = BeautifulSoup(best_response.EditorialReviews.Content.string, features="lxml").text
 
 		return thisbook
 
