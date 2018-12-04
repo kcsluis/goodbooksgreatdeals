@@ -49,7 +49,7 @@
 	<div>
 		<div class="list_block" v-for="book in books" v-cloak>
 			<a class='list_left' v-bind:href="book.url" target="_blank" v-on:click="event_book">
-				<img class="gbgd_image" v-bind:src="book.img" v-bind:alt="book.title_y">			
+				<img class="gbgd_image" v-bind:src="book.img" v-bind:alt="book.title">			
 				<div class="gbgd_money">
 					<div class="gbgd_money_sm">Get it for</div>
 					<div>{{ book.price_format }}</div>
